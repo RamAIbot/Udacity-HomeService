@@ -85,7 +85,9 @@ Now the map is generated in Rviz. It is saved in the HomeService directory as ma
 rosrun map_server map_saver
 //SAVE WITH CUSTOM MAP NAME 
 rosrun map_server map_saver <name_of_map>
+
 ```
+
 <br/>
 
 
@@ -102,6 +104,9 @@ and robot moves to the point.
    <img src="./service5.JPG" alt="Service5" height="100%" width="50%"/>
  </div>
 </div>
+
+<br/>
+The Robot is now moved to the 2D Nav goal location.
 
 <br/>
 <img src="./service6.JPG" alt="Service6"/>
