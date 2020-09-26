@@ -64,18 +64,30 @@ roslaunch turtlebot_gazebo turtlebot_world.launch
 Run the test_slam.sh shell script which launches turtlebot, teleop_keyboard, rviz and gmapping.
 Initially the Rviz won't show any map of the environment
 <div class="row">
-  <div style="float:left; margin-right:5px">
-   <img src="./service.JPG" alt="Service" height="360" width="680"/>
+  <div style="float:left">
+   <img src="./service.JPG" alt="Service" height="100%" width="50%"/>
   </div>
- <div style="float:left;margin-right:5px">
-   <img src="./service2.JPG" alt="Service2" height="360" width="680"/>
+ <div style="float:left">
+   <img src="./service2.JPG" alt="Service2" height="100%" width="50%"/>
  </div>
 </div>
 <br/><br/>
-The robot is now moves using teleop keyboard all over the enviornment until significant map is seen in Rviz
-<br/>
+The robot is now moves using teleop keyboard all over the enviornment until significant map is seen in Rviz.
+
 <img src="./service1.JPG" alt="Service1"/>
+
 <br/>
+
+Now the map is generated in Rviz. It is saved in the HomeService directory as map.pgm and map.yaml
+
+```
+//STEPS TO SAVE MAP
+rosrun map_server map_saver
+//SAVE WITH CUSTOM MAP NAME 
+rosrun map_server map_saver <name_of_map>
+```
+<br/>
+
 
 <h3> Module 2: Localization and Navigation using AMCL </h3>
 
@@ -135,3 +147,56 @@ Here the robot is moved from the starting point(near the entrance) to the pickup
 
 The add_marker.sh file is executed to test the apperance of marker in the destination point.It launches the add_markersold in additional. The marker remains there for 5 seconds and after that changes color to red and shows
 in drop off point for 5 seconds. This loop executed indefinitely.
+
+<br/>
+<div class="row">
+  <div style="float:left">
+   <img src="./service12.JPG" alt="Service12" height="100%" width="50%"/>
+  </div>
+ <div style="float:left">
+   <img src="./service13.JPG" alt="Service13" height="100%" width="50%"/>
+ </div>
+</div>
+
+<br/>
+
+<h3> Module 5: Home Service Robot </h3>
+
+ This final module shows the whole system architecture and process flows. The home_service.sh file is executed. This launches the turtlebot, amcl, rviz packages. Along with these the pick_objects node is launched which moves the robot from start to pick up waits there for 5 seconds and moves to drop off points and statys there. This is responsible for localization and movement. The add_markers node shows the marker at the destination as the indication of the object. Once when the robot reaches the destination it disappers and when the robot reaches the drop off point it reappears with different color indicating the object is successfully transferred from pick up to drop off.
+ 
+ <br/>
+ 
+ <h4> Moving towards the pick up point </h4>
+ <br/>
+ <div class="row">
+  <div style="float:left">
+   <img src="./service14.JPG" alt="Service14" height="100%" width="50%"/>
+  </div>
+ <div style="float:left">
+   <img src="./service15.JPG" alt="Service15" height="100%" width="50%"/>
+ </div>
+</div>
+<br/>
+
+<h4> Robot reached the pick up and picked the object (Marker disappeared) </h4>
+<br/>
+<img src="./service16.JPG" alt="Service16"/>
+<br/>
+
+<h4> Robot Moving towards the drop off point </h4>
+<br/>
+<img src="./service17.JPG" alt="Service17"/>
+<br/>
+
+<h4> Robot Reached the drop off point and puts the object (Markers reappers with new color) </h4>
+<br/>
+ <div class="row">
+  <div style="float:left">
+   <img src="./service18.JPG" alt="Service18" height="100%" width="50%"/>
+  </div>
+ <div style="float:left">
+   <img src="./service19.JPG" alt="Service19" height="100%" width="50%"/>
+ </div>
+</div>
+<br/>
+
