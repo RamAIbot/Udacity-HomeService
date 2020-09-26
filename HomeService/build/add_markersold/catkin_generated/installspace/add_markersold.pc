@@ -1,0 +1,8 @@
+prefix=/home/workspace/HomeService/install
+
+Name: add_markersold
+Description: Description of add_markersold
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

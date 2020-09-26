@@ -766,6 +766,19 @@ roscpp_generate_messages_lisp/fast:
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named add_markersold
+
+# Build rule for target.
+add_markersold: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 add_markersold
+.PHONY : add_markersold
+
+# fast build rule for target.
+add_markersold/fast:
+	$(MAKE) -f add_markersold/CMakeFiles/add_markersold.dir/build.make add_markersold/CMakeFiles/add_markersold.dir/build
+.PHONY : add_markersold/fast
+
+#=============================================================================
 # Target rules for targets named collision_map_creator
 
 # Build rule for target.
@@ -1890,6 +1903,7 @@ help:
 	@echo "... actionlib_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_lisp"
+	@echo "... add_markersold"
 	@echo "... collision_map_creator"
 	@echo "... request_publisher"
 	@echo "... collision_map_creator_msgs"

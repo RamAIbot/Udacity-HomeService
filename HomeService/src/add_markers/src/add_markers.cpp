@@ -6,24 +6,24 @@
 
 
  //*******Map Frame points*******
- float objx=5.5;
- float objy=6.16;
- float objw=1.0;
+ double objx=5.5;
+ double objy=6.16;
+ double objw=1.0;
 
  
  
 //8.443678 -y -2.591308
- float stx=8.443678;
- float sty=-2.591308;
- float stw=1.0;
+ double stx=8.443678;
+ double sty=-2.591308;
+ double stw=1.0;
  int pickup=1;
 
- float posx;
-  float posy;
-  float posa;
+ double posx;
+  double posy;
+  double posa;
 
- visualization_msgs::Marker marker;
- uint32_t shape = visualization_msgs::Marker::CUBE;
+ double dropx=-8.29;
+ double dropy=2.01;
  
  
 
@@ -37,6 +37,29 @@ void position_det(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg)
      posy=msg->pose.pose.position.y;
      posa=msg->pose.pose.orientation.w;
      ROS_INFO("x : %f, y: %f",posx,posy);
+
+     
+    
+   
+
+        
+    //((posx - objx)<0.5) && ((posy - objy)<0.5 )
+    if((sqrt(pow((posx - dropx),2) + pow((posy-dropy),2)) < 0.5))
+    {
+        pickup=10;
+    }
+
+    else if(sqrt(pow((posx - objx),2) + pow((posy-objy),2)) < 0.5)
+    {
+        pickup=2;
+    }
+    else
+    {
+        pickup=pickup+0;
+    }
+    
+    
+
     
     
 }
@@ -48,10 +71,14 @@ int main(int argc, char **argv)
 
     ros::init(argc,argv,"add_markers");
     ros::NodeHandle n;
-    ros::Rate r(1);
+    //ros::Rate r(1);
+    //while(ros::ok()){
     ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_maker",1);
     ros::Subscriber pos=n.subscribe("amcl_pose",10,position_det);
-    
+
+    visualization_msgs::Marker marker;
+    uint32_t shape = visualization_msgs::Marker::CUBE;
+
     marker.header.frame_id="/map";
     marker.header.stamp=ros::Time::now();
 
@@ -77,10 +104,8 @@ int main(int argc, char **argv)
     marker.color.b=1.0f;
     marker.color.a=1.0;
     marker.lifetime=ros::Duration();
-
     while(ros::ok()){
-
-        while(marker_pub.getNumSubscribers()<1)
+    while(marker_pub.getNumSubscribers()<1)
         {
             if(!ros::ok())
             {
@@ -89,20 +114,25 @@ int main(int argc, char **argv)
             ROS_WARN_ONCE("Please create a subscriber");
             sleep(1);
         }
-    //((posx - objx)<0.5) && ((posy - objy)<0.5 )
-    if(sqrt(pow((posx - objx),2) + pow((posy-objy),2)) < 0.5)
+
+    if (pickup==10)
     {
+        ROS_INFO("Objected Dropped at start");
         marker.color.r=0.0f;
         marker.color.g=0.0f;
         marker.color.b=1.0f;
         marker.color.a=0.0;
-        marker_pub.publish(marker);
-        pickup=0;
+        
+        
 
 
         marker.pose.position.x=-8.29;
         marker.pose.position.y=2.01;
         marker.pose.position.z=0.0;
+        
+        marker.pose.orientation.x=0.0;
+        marker.pose.orientation.y=0.0;
+        marker.pose.orientation.z=0.0;
         marker.pose.orientation.w=1.0;
         marker.color.r=1.0f;
         marker.color.g=0.0f;
@@ -119,10 +149,9 @@ int main(int argc, char **argv)
 
     }
 
-
-    else if( (posx - objx) != 0 && (posy - objy)!=0 && pickup==1)
+    else if(pickup==1)
     {
-        
+        ROS_INFO("Going to goal");
         marker.color.r=0.0f;
         marker.color.g=0.0f;
         marker.color.b=1.0f;
@@ -147,31 +176,29 @@ int main(int argc, char **argv)
         ROS_INFO("Adding the marker at Goal");
         marker_pub.publish(marker);
         //ros::Duration(5.0).sleep();
-    }
     
-    else if(pickup==0)
-    {
-
-        
-
-
-        marker.pose.position.x=-8.29;
-        marker.pose.position.y=2.01;
-        marker.pose.position.z=0.0;
-        marker.pose.orientation.w=1.0;
-        marker.color.r=1.0f;
+    
+    }
+    else if(pickup==2){
+        ROS_INFO("Moving towards start");
+        marker.color.r=0.0f;
         marker.color.g=0.0f;
-        marker.color.b=0.0f;
-        marker.color.a=1.0;
-        ros::Duration(5.0).sleep();
-        ROS_INFO("Adding the marker at start");
+        marker.color.b=1.0f;
+        marker.color.a=0.0;
         marker_pub.publish(marker);
+        pickup=0;
 
     }
-
-
-    ros::spin();
     
+
+
+
+
+    ros::spinOnce();
     }
+    //r.sleep();
+    //}
+    
+    
     
 }

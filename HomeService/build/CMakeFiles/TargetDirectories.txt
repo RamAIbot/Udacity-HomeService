@@ -156,6 +156,14 @@
 /home/workspace/HomeService/build/add_markers/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir
 /home/workspace/HomeService/build/add_markers/CMakeFiles/std_msgs_generate_messages_eus.dir
 /home/workspace/HomeService/build/add_markers/CMakeFiles/roscpp_generate_messages_lisp.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/test.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/install/strip.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/install/local.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/add_markersold.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/edit_cache.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/rebuild_cache.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/install.dir
+/home/workspace/HomeService/build/add_markersold/CMakeFiles/list_install_components.dir
 /home/workspace/HomeService/build/pgm_map_creator/CMakeFiles/install/strip.dir
 /home/workspace/HomeService/build/pgm_map_creator/CMakeFiles/install/local.dir
 /home/workspace/HomeService/build/pgm_map_creator/CMakeFiles/install.dir
