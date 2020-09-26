@@ -115,10 +115,10 @@ Here the robot is moved from the starting point(near the entrance) to the pickup
 <h4> Moving towards dropoff </h4>
 
 <div class="row">
-  <div style="float:left; margin-right:3px">
+  <div style="float:left; margin-right:2px">
    <img src="./service9.JPG" alt="Service9" height="100%" width="50%"/>
   </div>
- <div style="float:left;margin-right:3px">
+ <div style="float:left;margin-right:2px">
    <img src="./service10.JPG" alt="Service10" height="100%" width="50%"/>
  </div>
 </div>
