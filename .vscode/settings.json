@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "random": "cpp",
-        "unordered_map": "cpp",
-        "cmath": "cpp",
-        "complex": "cpp"
-    }
-}
